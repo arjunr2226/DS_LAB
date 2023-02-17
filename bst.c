@@ -37,7 +37,7 @@ void Preorder(struct node *node)
 {
     if (node != NULL)
     {
-        printf("%d->", node->key);
+        printf("%d ", node->key);
         Preorder(node->left);
         Preorder(node->right);
     }
@@ -61,7 +61,7 @@ void Postorder(struct node *node)
     {
         Postorder(node->left);
         Postorder(node->right);
-        printf("%d->", node->key);
+        printf("%d ", node->key);
     }
 }
 
@@ -119,20 +119,43 @@ struct node *deleteNode(struct node *root, int key)
 // Main function
 void main()
 {
-    struct node *root = NULL;
-    root = insert(root, 8);
-    root = insert(root, 3);
-    root = insert(root, 2);
-    root = insert(root, 10);
-    root = insert(root, 5);
-    // Preorder(root);
-    // printf("\n");
-    // Postorder(root);
-    // printf("\n");
-    Inorder(root);
-    printf("\n");
-
-    root = deleteNode(root, 2);
-    Inorder(root);
-    printf("\n");
+  struct node *root=NULL;
+	int ch, data;
+	do
+  {
+   	printf("ENTER \n0:EXIT\n1:INSERT \n2:DELETE \n3:PREORDER TRAVERSAL \n4:INORDER TRAVERSAL \n5:POSTORDER \n6:PRINT ROOT \nCHOICE: ");
+   	scanf("%d", &ch);
+   	switch(ch)
+   	{
+			case 0:
+				break;
+   		case 1:
+   			printf("ENTER THE NUMBER: ");
+    		scanf("%d", &data);
+    		root = insert(root, data);
+    		break;
+   		case 2:
+   			printf("ENTER THE NUMBER TO DELETE: ");
+   			scanf("%d", &data);
+    		root = deleteNode(root, data);
+    		break;
+   		case 3:
+   			Preorder(root);
+   			printf("\n");
+    		break;
+   		case 4:
+   			Inorder(root);
+   			printf("\n");
+    		break;
+   		case 5:
+   			Postorder(root);
+   			printf("\n");
+   			break;
+   		case 6:
+    		printf("ROOT: %d\n", root->key);
+    		break;
+    	default:
+    		printf("WRONG OPTION!\n");
+    }
+	}while(ch != 0);
 }
