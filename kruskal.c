@@ -23,7 +23,7 @@ void main()
 	int i, j, a, b, v, u, min, n, edges=0, minCost=0;
 	printf("HOW MANY VERTICES: ");
 	scanf("%d", &n);
-	printf("ENTER THE EDGES:\n");
+	printf("ENTER THE ADJUCENCY MATRIX:\n");
 	for(i=0; i<n; i++)
 	{
 		for(j=0; j<n; j++)
@@ -34,6 +34,8 @@ void main()
 		}
 	}
 	
+	
+	//Printing adj matrix
 	for(i=0; i<n; i++)
 	{
 		for(j=0; j<n; j++)
