@@ -116,30 +116,43 @@ struct node *deleteNode(struct node *root, int key)
     return root;
 }
 
+//Searching
+int search(struct node *node, int data)
+{
+	if(node == NULL)
+		return 0;
+	if(node->key == data)
+		return 1;
+	if(data < node->key)
+		search(node->left, data);
+	if(data > node->key)
+		search(node->right, data);
+}
+
 // Main function
 void main()
 {
-  struct node *root=NULL;
-	int ch, data;
-	do
-  {
-   	printf("ENTER \n0:EXIT\n1:INSERT \n2:DELETE \n3:PREORDER TRAVERSAL \n4:INORDER TRAVERSAL \n5:POSTORDER \n6:PRINT ROOT \nCHOICE: ");
-   	scanf("%d", &ch);
-   	switch(ch)
-   	{
+	struct node *root=NULL;
+	int ch, data, key, re;
+	while(1)
+	{
+		printf("ENTER\n0:EXIT\n1:INSERT\n2:DELETE\n3:PREORDER_TRAVERSAL\n4:INORDER_TRAVERSAL\n5:POSTORDER\n6:PRINT_ROOT\n7:SEARCH\nCHOICE: ");
+		scanf("%d", &ch);
+		switch(ch)
+		{
 			case 0:
+				exit(0);
+			case 1:
+				printf("ENTER THE ELEMENT TO INSERT: ");
+				scanf("%d", &data);
+				root = insert(root, data);
 				break;
-   		case 1:
-   			printf("ENTER THE NUMBER: ");
-    		scanf("%d", &data);
-    		root = insert(root, data);
-    		break;
-   		case 2:
-   			printf("ENTER THE NUMBER TO DELETE: ");
-   			scanf("%d", &data);
-    		root = deleteNode(root, data);
-    		break;
-   		case 3:
+			case 2:
+				printf("ENTER THE ELEMENT TO DELETE: ");
+				scanf("%d", &data);
+				root = deleteNode(root, data);
+				break;
+			case 3:
    			Preorder(root);
    			printf("\n");
     		break;
@@ -154,8 +167,17 @@ void main()
    		case 6:
     		printf("ROOT: %d\n", root->key);
     		break;
+    	case 7:
+    		printf("\nENTER ELEMENT TO SEARCH: ");
+    		scanf("%d", &key);
+    		re = search(root, key);
+    		if(re == 1)
+    			printf("\nFOUND\n");
+    		else
+    			printf("\nNOT FOUND\n");
+    		break;
     	default:
     		printf("WRONG OPTION!\n");
-    }
-	}while(ch != 0);
+		}
+	}
 }
